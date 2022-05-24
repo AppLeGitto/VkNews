@@ -9,21 +9,40 @@
 /* Begin PBXBuildFile section */
 		4D6A1CEA2836118400FDB118 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A1CE92836118400FDB118 /* AppDelegate.swift */; };
 		4D6A1CEC2836118400FDB118 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A1CEB2836118400FDB118 /* SceneDelegate.swift */; };
-		4D6A1CEE2836118400FDB118 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A1CED2836118400FDB118 /* ViewController.swift */; };
-		4D6A1CF12836118400FDB118 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D6A1CEF2836118400FDB118 /* Main.storyboard */; };
+		4D6A1CEE2836118400FDB118 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A1CED2836118400FDB118 /* AuthViewController.swift */; };
 		4D6A1CF32836118400FDB118 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D6A1CF22836118400FDB118 /* Assets.xcassets */; };
 		4D6A1CF62836118400FDB118 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D6A1CF42836118400FDB118 /* LaunchScreen.storyboard */; };
+		4D6A1D0B28362CE900FDB118 /* VKSdkFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6A1D0A28362CE900FDB118 /* VKSdkFramework.xcframework */; };
+		4D6A1D0C28362CE900FDB118 /* VKSdkFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6A1D0A28362CE900FDB118 /* VKSdkFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4D6A1D0F283635B300FDB118 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A1D0E283635B300FDB118 /* AuthService.swift */; };
+		4DC623F8283CE71100A6AD40 /* AuthViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC623F7283CE71100A6AD40 /* AuthViewController.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4D6A1D0D28362CE900FDB118 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4D6A1D0C28362CE900FDB118 /* VKSdkFramework.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4D6A1CE62836118400FDB118 /* VKNewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKNewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D6A1CE92836118400FDB118 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D6A1CEB2836118400FDB118 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4D6A1CED2836118400FDB118 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4D6A1CF02836118400FDB118 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4D6A1CED2836118400FDB118 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		4D6A1CF22836118400FDB118 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D6A1CF52836118400FDB118 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D6A1CF72836118400FDB118 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D6A1D0A28362CE900FDB118 /* VKSdkFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VKSdkFramework.xcframework; path = Carthage/Build/VKSdkFramework.xcframework; sourceTree = "<group>"; };
+		4D6A1D0E283635B300FDB118 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		4DC623F7283CE71100A6AD40 /* AuthViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthViewController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D6A1D0B28362CE900FDB118 /* VKSdkFramework.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +62,7 @@
 			children = (
 				4D6A1CE82836118400FDB118 /* VKNewsFeed */,
 				4D6A1CE72836118400FDB118 /* Products */,
+				4D6A1CFE28362B7200FDB118 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +77,32 @@
 		4D6A1CE82836118400FDB118 /* VKNewsFeed */ = {
 			isa = PBXGroup;
 			children = (
+				4D6A1D10283635BB00FDB118 /* Services */,
 				4D6A1CE92836118400FDB118 /* AppDelegate.swift */,
 				4D6A1CEB2836118400FDB118 /* SceneDelegate.swift */,
-				4D6A1CED2836118400FDB118 /* ViewController.swift */,
-				4D6A1CEF2836118400FDB118 /* Main.storyboard */,
+				4D6A1CED2836118400FDB118 /* AuthViewController.swift */,
+				4DC623F7283CE71100A6AD40 /* AuthViewController.storyboard */,
 				4D6A1CF22836118400FDB118 /* Assets.xcassets */,
 				4D6A1CF42836118400FDB118 /* LaunchScreen.storyboard */,
 				4D6A1CF72836118400FDB118 /* Info.plist */,
 			);
 			path = VKNewsFeed;
+			sourceTree = "<group>";
+		};
+		4D6A1CFE28362B7200FDB118 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4D6A1D0A28362CE900FDB118 /* VKSdkFramework.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4D6A1D10283635BB00FDB118 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4D6A1D0E283635B300FDB118 /* AuthService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,6 +115,8 @@
 				4D6A1CE22836118300FDB118 /* Sources */,
 				4D6A1CE32836118300FDB118 /* Frameworks */,
 				4D6A1CE42836118300FDB118 /* Resources */,
+				4D6A1CFD283629B100FDB118 /* ShellScript */,
+				4D6A1D0D28362CE900FDB118 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,35 +166,49 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D6A1CF62836118400FDB118 /* LaunchScreen.storyboard in Resources */,
+				4DC623F8283CE71100A6AD40 /* AuthViewController.storyboard in Resources */,
 				4D6A1CF32836118400FDB118 /* Assets.xcassets in Resources */,
-				4D6A1CF12836118400FDB118 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4D6A1CFD283629B100FDB118 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/VKSdkFramework.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4D6A1CE22836118300FDB118 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D6A1CEE2836118400FDB118 /* ViewController.swift in Sources */,
+				4D6A1CEE2836118400FDB118 /* AuthViewController.swift in Sources */,
 				4D6A1CEA2836118400FDB118 /* AppDelegate.swift in Sources */,
 				4D6A1CEC2836118400FDB118 /* SceneDelegate.swift in Sources */,
+				4D6A1D0F283635B300FDB118 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4D6A1CEF2836118400FDB118 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4D6A1CF02836118400FDB118 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4D6A1CF42836118400FDB118 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -288,11 +342,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LPK43453JL;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VKNewsFeed/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -316,11 +373,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LPK43453JL;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VKNewsFeed/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
