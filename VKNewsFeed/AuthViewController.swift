@@ -14,8 +14,7 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        authService = AuthService()
-        view.backgroundColor = .brown
+        authService = SceneDelegate.shared().authService  
     }
     @IBAction func signInTouch(_ sender: UIButton) {
         authService.wakeUpSession()
