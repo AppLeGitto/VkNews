@@ -1,0 +1,26 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "1.6.2",
+  "iOS" : [
+    {
+      "hash" : "1e6ac84e048410efff15f3f7050d61a24a36702794c09aa52f65c53820f6f813",
+      "name" : "VKSdkFramework",
+      "container" : "VKSdkFramework.xcframework",
+      "identifier" : "ios-arm64_i386_x86_64-simulator"
+    },
+    {
+      "hash" : "8f1bc7f9cb8e833e991fde00dfcc533802f72bd654448a9edf0bfb79666a6555",
+      "name" : "VKSdkFramework",
+      "container" : "VKSdkFramework.xcframework",
+      "identifier" : "ios-arm64_armv7"
+    }
+  ]
+}

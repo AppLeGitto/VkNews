@@ -45,8 +45,11 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
         setup()
         
         tableView.register(UINib(nibName: "NewsFeedCell", bundle: nil), forCellReuseIdentifier: NewsFeedCell.reuseId)
-        interactor?.makeRequest(request: .getNewsfeed)
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        view.backgroundColor = .systemGray
         
+        interactor?.makeRequest(request: .getNewsfeed)
     }
       
     func displayData(viewModel: NewsFeed.Model.ViewModel.ViewModelData) {
@@ -74,6 +77,6 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        212
+        feedViewModel.cells[indexPath.row].sizes.totalHeight
     }
 }

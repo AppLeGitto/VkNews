@@ -18,6 +18,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YL9-Zh-Umx">
                                 <rect key="frame" x="132" y="425.5" width="150" height="45"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="W7p-mt-h5l"/>
                                     <constraint firstAttribute="height" constant="45" id="jTC-Io-0qA"/>
@@ -26,6 +27,11 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Войти в ВК">
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="24"/>
                                 </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="signInTouch:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="rmZ-ZP-6tf"/>
                                 </connections>
@@ -47,6 +53,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
