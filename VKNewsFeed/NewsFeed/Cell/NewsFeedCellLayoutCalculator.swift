@@ -12,19 +12,11 @@ struct Sizes: FeedCellSizes {
     var attechmentFrame: CGRect
     var bottomViewFrame: CGRect
     var totalHeight: CGFloat
+    var moreTextButtonFrame: CGRect
 }
-
-struct Constants {
-    static let cardInsets = UIEdgeInsets(top: 0, left: 13, bottom: 13, right: 13)
-    static let topViewHeight: CGFloat = 38
-    static let bottomViewHeight: CGFloat = 38
-    static let postLabelInsets = UIEdgeInsets(top: 8 + Constants.topViewHeight + 8, left: 12, bottom: 12, right: 12)
-    static let postLabelFont = UIFont.systemFont(ofSize: 15)
-}
-
 
 protocol FeedCellLayoutCalculatorProtocol {
-    func sizes(postText: String?, photoAttachment: FeedCellPhotoAttachmentViewModel?) -> FeedCellSizes
+    func sizes(postText: String?, photoAttachment: FeedCellPhotoAttachmentViewModel?, isFullSizedPost: Bool) -> FeedCellSizes
 }
 
 final class FeedCellLayoutCalculator: FeedCellLayoutCalculatorProtocol {
@@ -35,7 +27,9 @@ final class FeedCellLayoutCalculator: FeedCellLayoutCalculatorProtocol {
         self.screenWidth = screenWidth
     }
     
-    func sizes(postText: String?, photoAttachment: FeedCellPhotoAttachmentViewModel?) -> FeedCellSizes {
+    func sizes(postText: String?, photoAttachment: FeedCellPhotoAttachmentViewModel?, isFullSizedPost: Bool) -> FeedCellSizes {
+        
+        var showMoreTextButtonFlag = false
         
         let cardViewWidth = screenWidth - Constants.cardInsets.left - Constants.cardInsets.right
         
@@ -45,14 +39,33 @@ final class FeedCellLayoutCalculator: FeedCellLayoutCalculatorProtocol {
         
         if let postText = postText, !postText.isEmpty {
             let width = cardViewWidth - Constants.postLabelInsets.left - Constants.postLabelInsets.right
-            let height = postText.height(width: width, font: Constants.postLabelFont)
+            var height = postText.height(width: width, font: Constants.postLabelFont)
+            
+            let limitHeight = Constants.postLabelFont.lineHeight * Constants.miniFeedPostLimitLines
+            
+            if !isFullSizedPost && height > limitHeight {
+                height = Constants.postLabelFont.lineHeight * Constants.miniFeedPostLines
+                showMoreTextButtonFlag = true
+            }
             
             postLabelFrame.size = CGSize(width: width, height: height)
         }
         
+        //MARK: Work with moreTextButtonFrame
+        
+        var moreTextButtonSize = CGSize.zero
+        
+        if showMoreTextButtonFlag == true {
+            moreTextButtonSize = Constants.moreTextButtonSize
+        }
+        
+        let moreTextButtonOrigin = CGPoint(x: Constants.moreTextButtonInsets.left, y: postLabelFrame.maxY)
+        
+        let moreTextButtonFrame = CGRect(origin: moreTextButtonOrigin, size: moreTextButtonSize)
+
         //MARK: Work with attachmentFrame
         
-        let attachmentTop = postLabelFrame.size == .zero ? Constants.postLabelInsets.top : Constants.postLabelInsets.bottom + postLabelFrame.maxY
+        let attachmentTop = postLabelFrame.size == .zero ? Constants.postLabelInsets.top : Constants.postLabelInsets.bottom + moreTextButtonFrame.maxY
         
         var attachmentFrame = CGRect(origin: CGPoint(x: 0,
                                                      y: attachmentTop),
@@ -69,7 +82,7 @@ final class FeedCellLayoutCalculator: FeedCellLayoutCalculatorProtocol {
         
         //MARK: Work with bottomViewFrame
         
-        let bottomViewTop = max(postLabelFrame.maxY, attachmentFrame.maxY) + 5
+        let bottomViewTop = max(postLabelFrame.maxY, attachmentFrame.maxY)
 
         let bottomViewFrame = CGRect(origin: CGPoint(x: 0, y: bottomViewTop),
                                      size: CGSize(width: cardViewWidth, height: Constants.bottomViewHeight))
@@ -80,6 +93,7 @@ final class FeedCellLayoutCalculator: FeedCellLayoutCalculatorProtocol {
         return Sizes(postLabelframe: postLabelFrame,
                      attechmentFrame: attachmentFrame,
                      bottomViewFrame: bottomViewFrame,
-                     totalHeight: totalHeight)
+                     totalHeight: totalHeight,
+                     moreTextButtonFrame: moreTextButtonFrame )
     }
 }

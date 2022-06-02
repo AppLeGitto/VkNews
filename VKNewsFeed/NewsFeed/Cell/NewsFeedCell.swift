@@ -25,6 +25,7 @@ protocol FeedCellSizes {
     var attechmentFrame: CGRect { get }
     var bottomViewFrame: CGRect { get }
     var totalHeight: CGFloat { get }
+    var moreTextButtonFrame: CGRect { get }
 }
 
 protocol FeedCellPhotoAttachmentViewModel {
@@ -49,11 +50,6 @@ class NewsFeedCell: UITableViewCell {
     @IBOutlet var sharesLabel: UILabel!
     @IBOutlet var viewsLabel: UILabel!
     @IBOutlet var bottomView: UIView!
-    
-    override func prepareForReuse() {
-        iconImageView.set(imageUrl: nil)
-        postImageView.set(imageUrl: nil)
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

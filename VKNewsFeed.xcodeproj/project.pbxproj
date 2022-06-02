@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4D17FD812844E3E2008E24B7 /* NewsFeedCellLayoutCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D17FD802844E3E2008E24B7 /* NewsFeedCellLayoutCalculator.swift */; };
 		4D17FD832845E482008E24B7 /* String+Height.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D17FD822845E482008E24B7 /* String+Height.swift */; };
+		4D17FD852846470E008E24B7 /* NewsFeedCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D17FD842846470E008E24B7 /* NewsFeedCodeCell.swift */; };
+		4D17FD87284653E7008E24B7 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D17FD86284653E7008E24B7 /* Constraints.swift */; };
+		4D17FD8928466DB5008E24B7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D17FD8828466DB5008E24B7 /* Constants.swift */; };
 		4D6A1CEA2836118400FDB118 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A1CE92836118400FDB118 /* AppDelegate.swift */; };
 		4D6A1CEC2836118400FDB118 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A1CEB2836118400FDB118 /* SceneDelegate.swift */; };
 		4D6A1CEE2836118400FDB118 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A1CED2836118400FDB118 /* AuthViewController.swift */; };
@@ -51,6 +54,9 @@
 /* Begin PBXFileReference section */
 		4D17FD802844E3E2008E24B7 /* NewsFeedCellLayoutCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCellLayoutCalculator.swift; sourceTree = "<group>"; };
 		4D17FD822845E482008E24B7 /* String+Height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Height.swift"; sourceTree = "<group>"; };
+		4D17FD842846470E008E24B7 /* NewsFeedCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCodeCell.swift; sourceTree = "<group>"; };
+		4D17FD86284653E7008E24B7 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		4D17FD8828466DB5008E24B7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4D6A1CE62836118400FDB118 /* VKNewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKNewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D6A1CE92836118400FDB118 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D6A1CEB2836118400FDB118 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,9 +166,11 @@
 		4D9B4398283D2A9900FE13F9 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				4D9B439B283D2AD900FE13F9 /* NewsFeedCell.xib */,
 				4D9B4399283D2AAB00FE13F9 /* NewsFeedCell.swift */,
 				4D17FD802844E3E2008E24B7 /* NewsFeedCellLayoutCalculator.swift */,
-				4D9B439B283D2AD900FE13F9 /* NewsFeedCell.xib */,
+				4D17FD842846470E008E24B7 /* NewsFeedCodeCell.swift */,
+				4D17FD8828466DB5008E24B7 /* Constants.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -189,6 +197,7 @@
 			children = (
 				4DF1EB5A284138F500EC251E /* WebImageView.swift */,
 				4D17FD822845E482008E24B7 /* String+Height.swift */,
+				4D17FD86284653E7008E24B7 /* Constraints.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -291,6 +300,7 @@
 			files = (
 				4DC62405283D0E2D00A6AD40 /* FeedResponse.swift in Sources */,
 				4D9B438F283D209800FE13F9 /* NewsFeedPresenter.swift in Sources */,
+				4D17FD852846470E008E24B7 /* NewsFeedCodeCell.swift in Sources */,
 				4D6A1CEE2836118400FDB118 /* AuthViewController.swift in Sources */,
 				4D6A1CEA2836118400FDB118 /* AppDelegate.swift in Sources */,
 				4D9B4394283D209800FE13F9 /* NewsFeedInteractor.swift in Sources */,
@@ -299,7 +309,9 @@
 				4DC62407283D12A700A6AD40 /* NetworkDataFetcher.swift in Sources */,
 				4D9B4390283D209800FE13F9 /* NewsFeedWorker.swift in Sources */,
 				4DF1EB5B284138F500EC251E /* WebImageView.swift in Sources */,
+				4D17FD8928466DB5008E24B7 /* Constants.swift in Sources */,
 				4D9B4391283D209800FE13F9 /* NewsFeedRouter.swift in Sources */,
+				4D17FD87284653E7008E24B7 /* Constraints.swift in Sources */,
 				4D6A1D0F283635B300FDB118 /* AuthService.swift in Sources */,
 				4DC62402283D023900A6AD40 /* API.swift in Sources */,
 				4D9B4392283D209800FE13F9 /* NewsFeedModels.swift in Sources */,
