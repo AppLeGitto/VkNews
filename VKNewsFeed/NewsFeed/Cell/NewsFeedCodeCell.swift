@@ -24,7 +24,10 @@ final class NewsFeedCodeCell: UITableViewCell {
         view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 15
-        view.clipsToBounds = true
+//        view.layer.masksToBounds = true
+        view.layer.shadowRadius = 4
+        view.layer.shadowOffset = CGSize(width: 2.5, height: 4)
+        view.layer.shadowOpacity = 0.4    
         
         return view
     }()
@@ -64,6 +67,8 @@ final class NewsFeedCodeCell: UITableViewCell {
         
         return imageView
     }()
+    
+    let galleryCollectionView: GalleryCollectionView = .init()
     
     let bottomView: UIView = {
         let view = UIView()
@@ -221,7 +226,7 @@ final class NewsFeedCodeCell: UITableViewCell {
         overlayThirdLayerOnBottomView()
         overlayFourthLayerOnBottomViewViews()
         
-        backgroundColor = .systemGray
+        backgroundColor = .systemGray6
         selectionStyle = .none
     }
     
@@ -326,6 +331,7 @@ final class NewsFeedCodeCell: UITableViewCell {
         cardView.addSubview(postLabel)
         cardView.addSubview(moreTextButton)
         cardView.addSubview(postImageView)
+        cardView.addSubview(galleryCollectionView)
         cardView.addSubview(bottomView)
         
         topView.anchor(top: cardView.topAnchor,
@@ -365,14 +371,30 @@ final class NewsFeedCodeCell: UITableViewCell {
         sharesLabel.text = viewModel.shares
         viewsLabel.text = viewModel.views
         
+//        if let photoAttachment = viewModel.photoAttachments.first, viewModel.photoAttachments.count == 1 {
+//            postImageView.set(imageUrl: photoAttachment.photoUrlString)
+//            postImageView.isHidden = false
+//            galleryCollectionView.isHidden = true
+//            postImageView.frame = viewModel.sizes.attechmentFrame
+//        } else if viewModel.photoAttachments.count > 1 {
+//            galleryCollectionView.frame = viewModel.sizes.attechmentFrame
+//            postImageView.isHidden = true
+//            galleryCollectionView.isHidden = false
+//            galleryCollectionView.set(photos: viewModel.photoAttachments)
+//        } else {
+//            postImageView.isHidden = true
+//            galleryCollectionView.isHidden = true
+//        }
         
-        if let photoAttechment = viewModel.photoAttachment {
-            postImageView.set(imageUrl: photoAttechment.photoUrlString)
-            postImageView.isHidden = false
+        if viewModel.photoAttachments.count > 0 {
+            galleryCollectionView.frame = viewModel.sizes.attechmentFrame
+            postImageView.isHidden = true
+            galleryCollectionView.isHidden = false
+            galleryCollectionView.set(photos: viewModel.photoAttachments)
         } else {
             postImageView.isHidden = true
+            galleryCollectionView.isHidden = true
         }
-        postImageView.frame = viewModel.sizes.attechmentFrame
     }
     
     required init?(coder: NSCoder) {

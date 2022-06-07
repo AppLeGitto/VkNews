@@ -34,6 +34,10 @@ class NewsFeedInteractor: NewsFeedBusinessLogic {
                 self?.feedResponse = feedResponse
                 self?.presentFeed()
             }
+        case .getUser:
+            fetcher.getUser { (userResponse) in
+                self.presenter?.presentData(response: .presentUserInfo(user: userResponse))
+            }
         case .revealPostId(postId: let postId):
             
             revealedPostIds.append(postId)

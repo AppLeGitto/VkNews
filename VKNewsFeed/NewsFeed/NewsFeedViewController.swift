@@ -22,6 +22,14 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
     
     @IBOutlet var tableView: UITableView!
     
+    private var titleView = TitleView()
+    private var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
+        return refreshControl
+    }()
+    
   // MARK: Setup
   
     private func setup() {
@@ -43,13 +51,33 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        setupTable()
+        setupTopBar()
+        
+        view.backgroundColor = .systemGray6
+        
+        interactor?.makeRequest(request: .getNewsfeed)
+        interactor?.makeRequest(request: .getUser)
+    }
+    
+    private func setupTable() {
         
         tableView.register(NewsFeedCodeCell.self, forCellReuseIdentifier: NewsFeedCodeCell.reuseId)
         tableView.register(UINib(nibName: "NewsFeedCell", bundle: nil), forCellReuseIdentifier: NewsFeedCell.reuseId)
+        
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
-        view.backgroundColor = .systemGray
         
+        tableView.addSubview(refreshControl)
+    }
+    
+    private func setupTopBar() {
+        self.navigationController?.hidesBarsOnTap = true
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationItem.titleView = titleView
+    }
+    
+    @objc private func refresh() {
         interactor?.makeRequest(request: .getNewsfeed)
     }
       
@@ -58,7 +86,9 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
         case .displayNewsFeed(feedViewModel: let feedViewModel):
             self.feedViewModel = feedViewModel
             tableView.reloadData()
-            print("//")
+            refreshControl.endRefreshing()
+        case .displayUser(userViewModel: let userViewModel):
+            titleView.set(userViewModel: userViewModel)
         }
     }
     
