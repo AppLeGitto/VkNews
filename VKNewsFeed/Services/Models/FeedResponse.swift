@@ -15,6 +15,7 @@ struct FeedResponse: Decodable {
     var items: [FeedItem]
     var profiles: [Profile]
     var groups: [Group]
+    var nextFrom: String?
 }
 
 struct FeedItem: Decodable {
@@ -24,7 +25,7 @@ struct FeedItem: Decodable {
     let date: Double
     let comments: CountableItem?
     let likes: CountableItem?
-    let reposts: CountableItem?
+    let shares: CountableItem?
     let views: CountableItem?
     let attachments: [Attachment]?
 }

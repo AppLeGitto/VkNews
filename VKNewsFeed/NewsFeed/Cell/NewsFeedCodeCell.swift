@@ -41,13 +41,20 @@ final class NewsFeedCodeCell: UITableViewCell {
         return view
     }()
     
-    let postLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.font = Constants.postLabelFont
-        label.textColor = .black
+    let postLabel: UITextView = {
+        let textView = UITextView()
+        textView.font = Constants.postLabelFont
+        textView.textColor = .black
+        textView.isScrollEnabled = false
+        textView.isSelectable = true
+        textView.isUserInteractionEnabled = true
+        textView.isEditable = false
         
-        return label
+        let padding = textView.textContainer.lineFragmentPadding
+        textView.textContainerInset = UIEdgeInsets(top: 0, left: -padding, bottom: 0, right: -padding)
+        
+        textView.dataDetectorTypes = UIDataDetectorTypes.all
+        return textView
     }()
     
     let moreTextButton: UIButton = {
@@ -226,7 +233,7 @@ final class NewsFeedCodeCell: UITableViewCell {
         overlayThirdLayerOnBottomView()
         overlayFourthLayerOnBottomViewViews()
         
-        backgroundColor = .systemGray6
+        backgroundColor = .clear
         selectionStyle = .none
     }
     
@@ -370,21 +377,6 @@ final class NewsFeedCodeCell: UITableViewCell {
         commentsLabel.text = viewModel.comments
         sharesLabel.text = viewModel.shares
         viewsLabel.text = viewModel.views
-        
-//        if let photoAttachment = viewModel.photoAttachments.first, viewModel.photoAttachments.count == 1 {
-//            postImageView.set(imageUrl: photoAttachment.photoUrlString)
-//            postImageView.isHidden = false
-//            galleryCollectionView.isHidden = true
-//            postImageView.frame = viewModel.sizes.attechmentFrame
-//        } else if viewModel.photoAttachments.count > 1 {
-//            galleryCollectionView.frame = viewModel.sizes.attechmentFrame
-//            postImageView.isHidden = true
-//            galleryCollectionView.isHidden = false
-//            galleryCollectionView.set(photos: viewModel.photoAttachments)
-//        } else {
-//            postImageView.isHidden = true
-//            galleryCollectionView.isHidden = true
-//        }
         
         if viewModel.photoAttachments.count > 0 {
             galleryCollectionView.frame = viewModel.sizes.attechmentFrame

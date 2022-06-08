@@ -60,12 +60,15 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
             let cells = feed.items.map { (feedItem) in
                 cellViewModel(feedItem: feedItem, profiles: feed.profiles, groups: feed.groups, revealdedPostIds: revealdedPostIds)
             }
-            let feedViewModel = FeedViewModel(cells: cells)
             
+            let footerTitle = String.localizedStringWithFormat(NSLocalizedString("newsFeedCellsCount", comment: ""), cells.count)
+            let feedViewModel = FeedViewModel(cells: cells, footerTitle: footerTitle)
             viewController?.displayData(viewModel: .displayNewsFeed(feedViewModel: feedViewModel))
         case .presentUserInfo(let user):
             let userViewModel = UserViewModel.init(photoUrlString: user?.photo100)
             viewController?.displayData(viewModel: .displayUser(userViewModel: userViewModel))
+        case .presentFooterLoader:
+            viewController?.displayData(viewModel: .displayFooterLoader)
         }
     }
     
@@ -82,17 +85,31 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
         
         let sizes = cellLayoutCalculator.sizes(postText: feedItem.text, photoAttachments: photoAttachments, isFullSizedPost: isFullSize)
         
+        let postText = feedItem.text?.replacingOccurrences(of: "<br>", with: "\n")
+        
         return .init(postId: feedItem.postId,
                      iconUrlString: profile.photo,
                      name: profile.name,
                      date: dataTitle,
-                     text: feedItem.text,
-                     likes: String(feedItem.likes?.count ?? 0),
-                     comments: String(feedItem.comments?.count ?? 0),
-                     shares: String(feedItem.reposts?.count ?? 0),
-                     views: String(feedItem.views?.count ?? 0),
+                     text: postText,
+                     likes: formattedCounter(feedItem.likes?.count),
+                     comments: formattedCounter(feedItem.comments?.count),
+                     shares: formattedCounter(feedItem.shares?.count),
+                     views: formattedCounter(feedItem.views?.count),
                      photoAttachments: photoAttachments,
                      sizes: sizes)
+    }
+    
+    private func formattedCounter(_ counter: Int?) -> String? {
+        guard let counter = counter, counter > 0 else { return nil }
+        
+        if counter > 999999 {
+            return "\(counter / 1000000)M"
+        } else if counter > 999 {
+            return "\(counter / 1000)K"
+        }
+        
+        return String(counter)
     }
     
     private func profile(sourceId: Int, profiles: [Profile], groups: [Group]) -> ProfileRepresentable {

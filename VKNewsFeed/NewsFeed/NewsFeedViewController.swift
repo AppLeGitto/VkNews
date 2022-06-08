@@ -17,14 +17,17 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
     var interactor: NewsFeedBusinessLogic?
     var router: (NSObjectProtocol & NewsFeedRoutingLogic)?
     
-    private var feedViewModel = FeedViewModel(cells: [])
+    private var feedViewModel = FeedViewModel(cells: [], footerTitle: nil)
     
     
     @IBOutlet var tableView: UITableView!
     
     private var titleView = TitleView()
+    private lazy var footerView = FooterView()
+    
     private var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .link
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
         return refreshControl
@@ -62,6 +65,9 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
     
     private func setupTable() {
         
+        let topInset: CGFloat = 8
+        tableView.contentInset.top = topInset
+        
         tableView.register(NewsFeedCodeCell.self, forCellReuseIdentifier: NewsFeedCodeCell.reuseId)
         tableView.register(UINib(nibName: "NewsFeedCell", bundle: nil), forCellReuseIdentifier: NewsFeedCell.reuseId)
         
@@ -69,10 +75,15 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
         tableView.backgroundColor = .clear
         
         tableView.addSubview(refreshControl)
+        tableView.tableFooterView = footerView
     }
     
     private func setupTopBar() {
-        self.navigationController?.hidesBarsOnTap = true
+        let topBar = UIView(frame: UIApplication.shared.statusBarFrame)
+        topBar.backgroundColor = .systemGray6
+        self.view.addSubview(topBar)
+        
+        self.navigationController?.hidesBarsOnSwipe = true
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationItem.titleView = titleView
     }
@@ -87,8 +98,17 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic, NewsFeedCo
             self.feedViewModel = feedViewModel
             tableView.reloadData()
             refreshControl.endRefreshing()
+            footerView.setTitle(feedViewModel.footerTitle)
         case .displayUser(userViewModel: let userViewModel):
             titleView.set(userViewModel: userViewModel)
+        case .displayFooterLoader:
+            footerView.showLoader()
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height * 0.97 {
+            interactor?.makeRequest(request: .getNextBatch)
         }
     }
     
